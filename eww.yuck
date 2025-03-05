@@ -1,0 +1,485 @@
+;; Time vars
+(defpoll TIME :interval "3s" `date +\"%H:%M\"`)
+(defpoll DATE :interval "3s" `date +\"%Y-%m-%d"`)
+
+(defpoll MEM :interval "6s" `scripts/getmem.sh`)
+(defpoll MEMCOL :interval "6s" `scripts/memcol.sh`)
+
+(defpoll SWAP :interval "24s" `scripts/getswap.sh`)
+
+(defpoll CPUUSE :interval "3s" `scripts/cpuusage.sh`)
+(defpoll CPUCOL :interval "3s" `scripts/cpucol.sh`)
+
+(defpoll CPUTEMP :interval "24s" `scripts/cputemp.sh`)
+(defpoll CPUTEMPCOL :interval "24s" `scripts/cputempcol.sh`)
+
+(defpoll GPUUSE :interval "12s" `scripts/gpuusage.sh`)
+(defpoll GPUCOL :interval "12s" `scripts/gpucol.sh`)
+(defpoll GPUTEMP :interval "24s" `scripts/cpugpu.sh`)
+(defpoll GPUTEMPCOL :interval "24s" `scripts/gputempcol.sh`)
+
+(defpoll calendar_day :interval "20h" "date '+%d'")
+(defpoll calendar_year :interval "20h" "date '+%Y'")
+
+(defwidget datetime []
+  (button :class "datetime"
+    (box
+    :orientation "v"
+    :hexpand "false"
+    :valign "fill"
+    :space-evenly "false"
+    :onclick `/home/karl/dev/psychotropic.eww/scripts/cal.py`
+     (label :class "time" :halign "center" :hexpand "false"
+            :valign "center" :spacing 1 :text TIME)
+     (label :class "date" :halign "end" :hexpand "false"
+            :spacing 1 :text DATE)
+    )
+  )
+)
+
+(defwidget mem []
+  (box :class "memgrp"
+       :orientation "h"
+       :hexpand "false"
+       :space-evenly "false"
+       (box :class "memicon"
+            :orientation "v"
+            :width 52
+            :height 52
+       )
+       (box :class "memnumbers"
+            :orientation "v"
+            :space-evenly "false"
+         (box :class "membox"
+              :orientation "v"
+              :width 110
+              :style "background-color: ${MEMCOL}"
+           (label :class "mempc" :valign "fill" :text MEM )
+         )
+         (box :class "memswapbox"
+              :orientation "v"
+              :width 110
+           (label :class "swappc" :text SWAP)
+         )
+       )
+  )
+)
+
+(defwidget cputemp []
+  (box :class "cpugrp"
+       :orientation "h"
+       :space-evenly "false"
+       (box :class "cpuicon"
+            :orientation "v"
+            :width 52
+            :height 52
+       )
+       (box :class "cpunumbers"
+            :orientation "v"
+            :space-evenly "false"
+         (box :class "cpubox"
+              :orientation "v"
+              :width 110
+              :style "background-color: ${CPUCOL}"
+           (label :class "cpulabel" :text CPUUSE)
+         )
+         (box :class "cputempbox"
+              :orientation "v"
+              :width 110
+              :style "background-color: ${CPUTEMPCOL}"
+           (label :class "cputemplabel" :text CPUTEMP)
+         )
+       )
+
+  )
+)
+
+(defwidget gputemp []
+  (box :class "gpugrp"
+       :orientation "h"
+       :space-evenly "false"
+       (box :class "gpuicon"
+            :orientation "v"
+            :width 52
+            :height 52
+       )
+       (box :class "gpunumbers"
+            :orientation "v"
+            :space-evenly "false"
+         (box :class "gpubox"
+              :orientation "v"
+              :width 110
+              :style "background-color: ${GPUCOL}"
+           (label :class "gpulabel" :text GPUUSE)
+         )
+         (box :class "gputempbox"
+              :orientation "v"
+              :width 110
+              :style "background-color: ${GPUTEMPCOL}"
+           (label :class "gputemplabel" :text GPUTEMP)
+         )
+       )
+  )
+)
+
+(defwidget emux []
+  (box :class "emubox"
+    :orientation "h"
+    :space-evenly "true"
+    (box :class "emuwin"
+      :orientation "h"
+      :space-evenly "false"
+      :valign "center"
+      (box :class "emusys"
+        :orientation "v"
+        :vexpand "false"
+        :width 20
+        :height 20
+      )
+      (box :class "emusys"
+        :orientation "v"
+        :vexpand "false"
+        :width 20
+        :height 20
+      )
+      (box :class "emusysoff"
+        :orientation "v"
+        :vexpand "false"
+        :width 20
+        :height 20
+      )
+
+  )
+))
+
+(defwidget emuwin []
+  (box :class "emubox"
+    :orientation "h"
+    :space-evenly "false"
+    (box :class "emuwin"
+      :orientation "h"
+      :space-evenly "false"
+      :valign "center"
+      :height 20
+      :width 100
+      :vexpand "false"
+      (box :class "emusysoff"
+        :orientation "v"
+        :vexpand "false"
+        :width 20
+        :height 20
+      )
+      (box :class "emusys"
+        :orientation "v"
+        :vexpand "false"
+        :width 20
+        :height 20
+      )
+      (box :class "emusys"
+        :orientation "v"
+        :vexpand "false"
+        :width 20
+        :height 20
+      )
+      (box :class "emusysoff"
+        :orientation "v"
+        :vexpand "false"
+        :width 20
+        :height 20
+      )
+      (box :class "emusys"
+        :orientation "v"
+        :vexpand "false"
+        :width 20
+        :height 20
+      )
+
+  )
+))
+
+(defwidget rinfo []
+  (box :class "rinfobox"
+    :orientation "h"
+    :space-evenly "false"
+    (box :class "rinfowin"
+      :orientation "v"
+      :space-evenly "false"
+      :valign "center"
+      :width 10
+      :vexpand "false"
+      (box :class "rinfot"
+        :orientation "v"
+        :vexpand "false"
+        :width 7
+        :height 10
+      )
+      (box :class "rinfotx"
+        :orientation "v"
+        :vexpand "false"
+        :width 7
+        :height 10
+      )
+      (box :class "rinfot"
+        :orientation "v"
+        :vexpand "false"
+        :width 7
+        :height 10
+      )
+    )
+    (box :class "rinfowin"
+      :orientation "v"
+      :space-evenly "false"
+      :valign "center"
+      :width 10
+      :vexpand "false"
+      (box :class "rinfotx"
+        :orientation "v"
+        :vexpand "false"
+        :width 7
+        :height 10
+      )
+      (box :class "rinfot"
+        :orientation "v"
+        :vexpand "false"
+        :width 7
+        :height 10
+      )
+      (box :class "rinfot"
+        :orientation "v"
+        :vexpand "false"
+        :width 7
+        :height 10
+      )
+    )
+    (box :class "spacer"
+      :orientation "v"
+      :space-evenly "false"
+      :width 20
+    )
+    (box :class "rinfowin"
+      :orientation "v"
+      :space-evenly "false"
+      :valign "center"
+      :width 10
+      :vexpand "false"
+      (box :class "rinfot"
+        :orientation "v"
+        :vexpand "false"
+        :width 7
+        :height 10
+      )
+      (box :class "rinfot"
+        :orientation "v"
+        :vexpand "false"
+        :width 7
+        :height 10
+      )
+      (box :class "rinfot"
+        :orientation "v"
+        :vexpand "false"
+        :width 7
+        :height 10
+      )
+    )
+    (box :class "rinfowin"
+      :orientation "v"
+      :space-evenly "false"
+      :valign "center"
+      :width 10
+      :vexpand "false"
+      (box :class "rinfot"
+        :orientation "v"
+        :vexpand "false"
+        :width 7
+        :height 10
+      )
+      (box :class "rinfotx"
+        :orientation "v"
+        :vexpand "false"
+        :width 7
+        :height 10
+      )
+      (box :class "rinfotx"
+        :orientation "v"
+        :vexpand "false"
+        :width 7
+        :height 10
+      )
+    )
+    (box :class "rinfowin"
+      :orientation "v"
+      :space-evenly "false"
+      :valign "center"
+      :width 10
+      :vexpand "false"
+      (box :class "rinfotx"
+        :orientation "v"
+        :vexpand "false"
+        :width 7
+        :height 10
+      )
+      (box :class "rinfot"
+        :orientation "v"
+        :vexpand "false"
+        :width 7
+        :height 10
+      )
+      (box :class "rinfot"
+        :orientation "v"
+        :vexpand "false"
+        :width 7
+        :height 10
+      )
+    )
+    (box :class "rinfowin"
+      :orientation "v"
+      :space-evenly "false"
+      :valign "center"
+      :width 10
+      :vexpand "false"
+      (box :class "rinfot"
+        :orientation "v"
+        :vexpand "false"
+        :width 7
+        :height 10
+      )
+      (box :class "rinfot"
+        :orientation "v"
+        :vexpand "false"
+        :width 7
+        :height 10
+      )
+      (box :class "rinfot"
+        :orientation "v"
+        :vexpand "false"
+        :width 7
+        :height 10
+      )
+    )
+  )
+)
+
+(defwidget left []
+  (box :class "dbox"
+       :orientation "h"
+       :space-evenly "false"
+       :hexpand "true"
+       :halign "start"
+       (button :class "daemonbox"
+            :onclick ""
+            :orientation "h"
+            :width 52
+            :height: 52
+       )
+  )
+)
+
+(defwidget center []
+  (box :class "barbox"
+       :orientation "h"
+       :space-evenly "false"
+       :hexpand "true"
+       :halign "center"
+     ;;(rinfo)
+     ;;(emux)
+     ;;(emuwin)
+  )
+)
+
+(defwidget performance []
+  (box :class "barbox"
+       :orientation "h"
+       :space-evenly "false"
+       :hexpand "true"
+       :halign "end"
+    (mem)
+    (cputemp)
+    (gputemp)
+  )
+)
+
+(defwidget right []
+  (box :class "barbox"
+       :orientation "h"
+       :space-evenly "false"
+       :halign "end"
+       :vexpand "false"
+       :hexpand "true"
+   ;;(box :class "systray"
+   ;;    :orientation "h"
+   ;;    :space-evenly "false"
+   ;;    :halign "end"
+   ;;    :vexpand "false"
+   ;;    :hexpand "true"
+   ;;    :width 100
+   ;;)
+    (datetime)
+  )
+)
+
+(defwidget cal []
+  (box :class "cal" :orientation "v"
+  (box :class "cal-in"
+  (calendar :class "cal"
+        :day calendar_day
+        :year calendar_year))))
+
+(defwindow calendar
+  :geometry (geometry :x "-20px"
+            :y "7%"
+                        :anchor "top right"
+            :width "270px"
+            :height "60px")
+(cal))
+
+(defwidget bar []
+  (box :class "bar"
+       :orientation "h"
+       :space-evenly "false"
+       :hexpand "true"
+       (left)
+       (center)
+       (performance)
+       (right)
+  )
+)
+
+(defwidget bar1 []
+  (box :class "bar"
+       :orientation "h"
+       :space-evenly "false"
+       :hexpand "true"
+    (box :class "barbox"
+         :orientation "h"
+         :space-evenly "false"
+         :halign "end"
+         :vexpand "false"
+         :hexpand "true"
+         (datetime)
+    )
+  )
+)
+
+(defwindow bar
+          :geometry (geometry :x "0%"
+                       :y "0px"
+                       :width "133.5%"
+                       :height "52px"
+                       :anchor "top center")
+          :monitor 0
+          :stacking "fg"
+          :windowtype "dialog"
+          :exclusive "true"
+(bar))
+
+(defwindow bar1
+          :geometry (geometry :x "0%"
+                       :y "0px"
+                       :width "100%"
+                       :height "52px"
+                       :anchor "top center")
+          :monitor 1
+          :stacking "fg"
+          :windowtype "dialog"
+          :exclusive "true"
+(bar1))

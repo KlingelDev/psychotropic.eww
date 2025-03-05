@@ -1,0 +1,216 @@
+* {
+ all: unset;
+ font-family: FiraCodeNerdFontPropo;
+ font-size: 12pt;
+}
+
+.bar {
+  background: #101010;
+  background: blue;
+  color: #FAFAFA;
+  border-radius: 0px;
+  margin: 0px;
+  padding: 0px;
+  border-bottom: 1px solid #222;
+  background-image: linear-gradient(to bottom, #101010, #0e0e0e, #0c0c0c, #0a0a0a, #080808);
+}
+
+.barbox {
+  margin: 3px;
+  margin-top: 6px;
+}
+
+.dbox {
+}
+
+.systray {
+  border: 1px solid #222;
+  border-radius: 3px;
+  background: #040404;
+  margin: 3px;
+  margin-right: 16px;
+}
+
+.daemonbox {
+  background: url('images/daemon.png') no-repeat;
+  background-position: center;
+}
+
+.daemonbox:hover {
+  background: url('images/daemon_red.png') no-repeat;
+  background-position: center;
+  transition: .5s;
+}
+
+.daemonbox:active {
+  background: url('images/daemon.png') no-repeat;
+  background-position: center;
+  transition: 0.1s;
+}
+
+.datetime {
+  padding-right: 8px;
+}
+
+.datetime:hover {
+  background-image: linear-gradient(to bottom, #101010, #DDDDDD);
+  transition: 0.5s;
+}
+
+.datetime:active {
+  background: none;
+  transition: 0.5s;
+}
+.time {
+  font-family: FiraCodeNerdFontPropo;
+  font-weight: 600;
+  font-size: 17pt;
+  padding: 0px;
+  padding-top: 0px;
+}
+
+.date {
+  font-size: 10pt;
+}
+
+.memgrp {
+}
+
+.membox {
+  border-radius: 2px 2px 0px 0px;
+}
+
+.mempc {
+  font-size: 17pt;
+  font-weight: bold;
+}
+
+.memnumbers { }
+
+.swappc {
+  font-size: 10pt;
+}
+
+.memswapbox {
+  border-radius: 0px 0px 2px 2px;
+  background: #131313;
+}
+.memicon {
+  background: url('images/mem.png') no-repeat;
+  background-position: center;
+}
+
+.cpuicon {
+  background: url('images/cpu.png') no-repeat;
+  background-position: center;
+}
+
+.cpugrp {
+}
+
+.cpubox {
+  border-radius: 2px 2px 0px 0px;
+}
+
+.cpulabel {
+  font-size: 17pt;
+  font-weight: bold;
+}
+
+.cputempbox {
+  border-radius: 0px 0px 2px 2px;
+}
+
+.cputemplabel {
+  font-size: 10pt;
+}
+
+.cpupc {
+}
+
+.cputemp {
+  border-radius: 2px;
+  padding:2px;
+  font-size: 11pt;
+}
+
+.gpugrp {
+  padding-right: 8px;
+}
+
+.gpubox {
+  border-radius: 2px 2px 0px 0px;
+}
+
+.gpulabel {
+  font-size: 17pt;
+  font-weight: bold;
+}
+
+.gputemplabel {
+  font-size: 10pt;
+}
+
+.gputempbox {
+  border-radius: 0px 0px 2px 2px;
+}
+
+tooltip.background {
+  background-color: #0f0f17;
+  font-size: 18;
+  border-radius: 10px;
+  color: #bfc9db;
+}
+
+tooltip label {
+  margin: 6px;
+}
+
+.emubox {
+}
+
+.emuwin {
+  padding-left: 8px;
+}
+
+.emusys {
+  border: 1px solid #CCC;
+  margin-right: 3px;
+  border-radius: 5px;
+  background: #CCC;
+}
+
+.emusyst {
+  border: 1px solid #CCC;
+  margin-right: 3px;
+  border-radius: 20px;
+  background: #CCC;
+}
+
+.emusysoff {
+  border: 1px solid #CCC;
+  margin-right: 3px;
+  border-radius: 5px;
+  background: none;
+}
+
+.rinfobox {
+ padding-right: 5px;
+}
+.rinfowin {
+  padding-left: 8px;
+}
+
+.rinfot {
+  border: 1px solid #CCC;
+  margin-top: 3px;
+  border-radius: 20px;
+  background: #CCC;
+}
+
+.rinfotx {
+  border: 1px solid #CCC;
+  margin-top: 3px;
+  border-radius: 20px;
+  background: none;
+}
